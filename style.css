@@ -1,0 +1,15 @@
+
+
+.logo img {
+  display: inline-block;
+  margin: 15px; /* margin: 20px was off */
+  height: 60px;
+  width: auto; /* correct proportions to specified height */
+  border-radius: 50%; /* makes it a circle */
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border-right-style: groove;
+
+}
+
