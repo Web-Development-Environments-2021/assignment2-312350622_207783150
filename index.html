@@ -2,29 +2,65 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css" />
-
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<title> liel&efrat </title>
 	</head>
 
 	<body>
+	<div class="header" style="position: fixed;">
+		<img  class="nameLogo" src="images/name.jpg" alt="logo" />
+
+		<img  class="logo" src="images/logo.jpeg" alt="logo" />
+	</div>
 	
-	<div class="header" >
-		<img  id="logo" src="images/logo.jpeg" alt="logo"  type="image/x-icon" rel="shortcut icon"/>
+	<br/><br/><br/><br/><br/><br/><br/><br/>
+	
+
+	<div id="menu">
+		<ul>
+		 <il><a id="welcome" onclick="Welcome()"> Welcome</a></il>
+		 <il><a onclick="Rigister()"> Register</a></il>
+		 <il><a onclick="Login()"> Login</a></il>
+		 <il><a onclick="about()">About</a></il>
+
+		</ul>
+	</div>
+
+	
+
+	<br/><br/><br/><br/><br/><br/>
+
+<div class="content">
+	
+	<div class="welcomeDiv" >
+		<center>
+		<img  class="pictuerWelcome" src="images/welcome.jpeg" style="width: 55%;height: 100%; ;" />
+		<button id="registerButton" on >Register</button>
+		<button id="LogInButton">LogIn</button>
+		</center>
 	</div>
 
 
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
-		<div id="time" >
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
+
+<div id="game" hidden>
+	<div id="score">
+		<label for="lblScore">SCORE:</label>
+		<input id="lblScore" type="text" />
+	</div>
+	<div id="time" >
+		<label for="lblTime">TIME:</label>
+		<input id="lblTime" type="text" />
+	</div>
+	
+	
+	<div id="game">
+		<canvas id="canvas" height="600" width="600"></canvas>
+	</div>
+</div>
+
+
+</div>
+	
 	</body>
 </html>

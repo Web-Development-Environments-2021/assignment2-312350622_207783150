@@ -12,6 +12,16 @@ $(document).ready(function() {
 	Start();
 });
 
+$(document).ready(function() {
+    $("#welcome").click(function(){
+      $(".welcomeDiv").show();
+    });
+  });
+
+
+
+
+
 function Start() {
 	board = new Array();
 	score = 0;

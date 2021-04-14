@@ -1,15 +1,90 @@
 
 
-.logo img {
-  display: inline-block;
-  margin: 15px; /* margin: 20px was off */
-  height: 60px;
-  width: auto; /* correct proportions to specified height */
-  border-radius: 50%; /* makes it a circle */
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  border-right-style: groove;
+body{
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color:rgb(0, 1, 0);
+	color: white;
+}
+
+
+
+  img.logo{
+	float: left;
+	left: 0%;
+	position: fixed;
+	width: 150px;
+	height: 150px;
+	background: #555;
+	border-radius: 50%;
+    }
+  
+img.nameLogo{
+  float: left;
+  left: 12%;
+  position: fixed;
+  height: 150px;
+
 
 }
 
+#menu
+ul {
+	position: fixed;
+	width: 100%;
+	height: 8%;
+	overflow: auto;
+	background-color:silver;
+	overflow:auto;
+	display: block;
+	font-size: 3.5em;
+	font-weight: bold;
+	font-size: 25px;
+	color:black;
+	
+  }
+  
+  li {
+	float: left;
+
+  }
+  
+  .li a {
+
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 25px;
+
+  }
+
+   a:hover {
+	background: #f1f1f1;
+	
+  }
+  
+ 
+  .welcomeDiv button {
+	background-color: #acbbacdc; /* Green */
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 40px;
+	top: 80%;
+	left: 50%;
+	cursor: pointer;
+	border-radius: 5px;
+	text-align: center;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+  
+  }
+  .welcomeDiv button:hover {
+	background-color: black;
+	color: white;
+}
