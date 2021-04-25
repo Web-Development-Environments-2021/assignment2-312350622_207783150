@@ -1,90 +1,470 @@
 
-
 body{
-	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
-	background-color:rgb(0, 1, 0);
+	font-family:"Snell Roundhand, cursive";
+	background-color: black;
+	background-repeat: no-repeat;
+	background-size: 100%;
 	color: white;
+	
 }
 
 
+/*-----------------Navbar --------------------------*/
+.header{
+		width: 100%;
+		background-color: black; 
+}
 
-  img.logo{
-	float: left;
-	left: 0%;
+img.logo{
+	left: 1%;
+	top: 2%;
 	position: fixed;
-	width: 150px;
-	height: 150px;
-	background: #555;
+	width: 60px;
+	height: 60px;
 	border-radius: 50%;
-    }
+}
   
 img.nameLogo{
-  float: left;
-  left: 12%;
+  left: 5%;
+  top: 2%;
   position: fixed;
-  height: 150px;
-
-
+  height: 55px;
 }
 
-#menu
-ul {
+img.gif{
+	height: 80px;
+	float:right;
+	margin-right: 2%;
+}
+
+.navbar {
+	background: #e9e513d8;
+  	font-family: 'Lexend Exa', sans-serif;
 	position: fixed;
-	width: 100%;
-	height: 8%;
-	overflow: auto;
-	background-color:silver;
-	overflow:auto;
-	display: block;
-	font-size: 3.5em;
-	font-weight: bold;
+	top: 25px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: inline-block;
+	border: 2px solid #EBECF1;
+	border-radius: 25px;
+	animation: slide-in 1s ease-out;
+	padding: 2px 20px;
+	cursor: pointer;
+}
+
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.navbar a {
+	color: rgb(0, 0, 0);
+	-webkit-text-stroke: 0.3px gold;
+	font-family: fantasy;
+	padding: 14px 10px;
 	font-size: 25px;
-	color:black;
-	
-  }
-  
-  li {
-	float: left;
-
-  }
-  
-  .li a {
-
-	float: left;
-	display: block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 14px 16px;
 	text-decoration: none;
-	font-size: 25px;
-
-  }
-
-   a:hover {
-	background: #f1f1f1;
-	
-  }
+}
   
- 
-  .welcomeDiv button {
-	background-color: #acbbacdc; /* Green */
+.navbar a:hover {
+	background-color:#e4b419;
+	color: rgb(255, 255, 255);
+}
+
+
+/*-----------------Welcome --------------------------*/
+#welcomeDiv button {
+	font-family: fantasy;
+	position:relative;
+	padding: 14px 20px;
+	background-color: #acbbac83; 
 	border: none;
 	color: white;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 40px;
-	top: 80%;
-	left: 50%;
+	top: 50%;
+	right: 27%;
 	cursor: pointer;
 	border-radius: 5px;
 	text-align: center;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
-  
   }
-  .welcomeDiv button:hover {
-	background-color: black;
+
+#welcomeDiv button:hover {
+	background-color:#e9e513d8;
+}
+
+
+/*-----------------Game-Over --------------------------*/
+#GameOver button{
+	font-family:"Snell Roundhand, cursive";
+	position:relative;
+	background-color: #ebde2adc; 
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 40px;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+
+/*-----------------Game--------------------------*/
+#gameDiv{
+	margin: 0 auto;
+	background-image: url('images/BACK.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+
+}
+
+.set_in_game input[type=text], input[type=password] {
+	width: 100%;
+	padding: 8px;
+	margin: 1px 0 2px 0;
+	display: inline-block;
+	border: none;
+	background-color: rgb(211, 203, 90);
+	border-radius: 25px;
+	font-size: 18px;
+	font-family: cursive;
+	color: white;
+	
+  }
+  .set_in_game input[type=text]:focus, input[type=password]:focus {
+	background-color: rgb(211, 203, 90);
+	outline: none;
+  }
+
+.tbl_game{
+	padding: 0px;
+	margin: 0 auto;
+	width: 1050px;
+	border-radius: 5px;
+  	background-color:rgb(211, 203, 90);
+}
+.set_in_game{
+	width: 200px;
+	padding: 0px;
+}
+
+.live_img{
+	height: 20px;
+	width: 20px;
+	padding: 0px;
+}
+
+#GameOver button:hover{
+	background-color:rgb(212, 149, 11);
+}
+
+.start_new{
+	font-family: fantasy;
+	position:relative;
+	background-color: #8a58e6bd; 
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	cursor: pointer;
+	border-radius: 5px;
+	text-align: center;
+  }
+
+.start_new:hover {
+	background-color:#8958e6;
+}
+}
+
+
+/*-----------------Register --------------------------*/
+.content-background{
+	background-image: url("images/background.jpeg");
+	background-repeat:no-repeat;
+	background-size: 100%;
+}
+
+h1{
+	text-align: center;
+	font-family: fantasy;
+	letter-spacing: 3px;
+	font-size: 40px;
+	color: gold;
+	-webkit-text-stroke: 2px black;
+}
+
+* {box-sizing: border-box}
+
+.register_container {
+	border-radius: 5px;
+  	margin: 0 auto;
+  	background-color: rgba(150, 150, 150, 0.836);
+  	width: 450px;
+}
+
+label{
+	margin-left: 2%;
+	font-family: cursive;
+	letter-spacing: 2px;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 8px;
+  margin: 1px 0 2px 0;
+  display: inline-block;
+  border: none;
+  background-color: rgb(255, 255, 255, 0.4);
+  border-radius: 25px;
+  font-size: 14px;
+  color: black;
+}
+
+::-webkit-input-placeholder{
+	color: rgb(61, 61, 61);
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 1px;
+}
+
+.registerbtn {
+  background-color: #7099f0;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 8px;
+  padding: 8px 20px;
+  margin: 8px 0;
+  border: white solid;
+  cursor: pointer;
+  width: 50%;
+  margin-left: 25%;
+  opacity: 0.9;
+  border-radius: 25px;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+form .error {
+	display: block;
+	color: #ff0000;
+}
+
+select {
+	font-size:20px;
+	border-radius: 20px;
+	outline: 0;
+	box-shadow: none;
+	border: 20 !important;
+	background: #2c3e50;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+.select {
+	position: relative;
+	display: flex;
+	width: 20em;
+	height: 3em;
+	line-height: 3;
+	background: #2c3e50;
+	overflow: hidden;
+	border-radius: .25em;
+}
+
+select {
+	flex: 1;
+	padding: 0 .5em;
+	color: #fff;
+	cursor: pointer;
+}
+
+.select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em;
+	background: #34495e;
+	cursor: pointer;
+	pointer-events: none;
+	-webkit-transition: .25s all ease;
+	-o-transition: .25s all ease;
+	transition: .25s all ease;
+}
+
+.select:hover::after {
+	color: #f39c12;
+}
+
+
+  /*-----------------Login --------------------------*/
+
+.login_container{
+	padding: 16px;
+	margin: 0 auto;
+	width: 300px;
+	background-color: rgba(150, 150, 150, 0.836);
+	border-radius: 5px;
+	font-family: cursive;
+}
+
+
+/*-----------------Setting --------------------------*/
+#setting{
+	background-image:url('images/background.jpeg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.def_table{
+	margin: 0 auto;
+}
+  
+.container input[type=text],.containertextarea {
+	padding: 14px;
+	border: 2px solid rgb(113, 114, 114);
+	border-radius: 4px;
+	resize:horizontal;
+	height: 30px;
+	width: 120px;
+}
+  
+.keyboard_select{
+	width: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+  
+.th-def{
+	color: white;
+	font-size: 18px;
+	font-family:cursive ;
+	width: 200px;
+	padding:5px;
+}
+  
+.th-select{
+	width: 30px;
+	padding:5px;
+}
+
+.container {
+	background-color: rgba(150, 150, 150, 0.836);
+	width: 550px;
+	border-radius: 5px;
+	margin: 0 auto;	  
+}
+  
+#setting button {
+	font-family:"Snell Roundhand, cursive";
+	position:relative;
+	background-color: #ebde2adc; 
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 40px;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#setting button:hover {
+	background-color:rgb(212, 149, 11);
+}
+  
+.butt_tbl{
+	margin: 0 auto;
+}
+
+
+/*-----------------About --------------------------*/
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.4);
+  }
+  
+  /* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	border: 1px solid #888;
+	width: 80%;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+  
+  @-webkit-keyframes animatetop {
+	from {top:-300px; opacity:0} 
+	to {top:0; opacity:1}
+}
+  
+@keyframes animatetop {
+	from {top:-300px; opacity:0}
+	to {top:0; opacity:1}
+}
+  
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+  
+.modal-header {
+	padding: 2px 16px;
+	background-color: #dacd18;
+	color: white;
+}
+  
+.modal-body {padding: 2px 16px;}
+  
+.modal-footer {
+	padding: 2px 16px;
+	background-color: #dacd18;
 	color: white;
 }
