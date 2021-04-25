@@ -1,66 +1,468 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title> Pacman-Game! </title>
+		<link rel="icon" href="images/iconpage.jpg">
+		<meta name="author" content="Efrat Cohen & Liel Serfaty"> 
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
-		<title> liel&efratyy </title>
+		<script type="text/javascript" src="./register.js"></script>
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js"></script>
 	</head>
 
 	<body>
-	<div class="header" style="position: fixed;">
-		<img  class="nameLogo" src="images/name.jpg" alt="logo" />
 
-		<img  class="logo" src="images/logo.jpeg" alt="logo" />
-	</div>
-	
-	<br/><br/><br/><br/><br/><br/><br/><br/>
-	
+		<!-------------------- images in top -------------------------------->
+		<div class="header" style="position: fixed;">
+			<img  class="nameLogo" src="images/name.jpg" alt="logo" />
+			<img  class="logo" src="images/logo.jpeg" alt="logo" />
+			<img  class="gif" src="images/logo_right_2.gif " alt="logo" />
+		</div>
 
-	<div id="menu">
-		<ul>
-		 <il><a id="welcome" onclick="Welcome()"> Welcome</a></il>
-		 <il><a onclick="Rigister()"> Register</a></il>
-		 <il><a onclick="Login()"> Login</a></il>
-		 <il><a onclick="about()">About</a></il>
+		<!-------------------- navbar -------------------------------->
+		<div class="navbar">
+			<ul>
+			<il><a id="welcome" onclick="show('welcomeDiv')"> Welcome</a></il>
+			<il><a  onclick="show('register')"> Register</a></il>
+			<il><a onclick="show('login')"> Login</a></il>
+			<li style = "display:inline;"><a id="myBtn" type="button">About</a></li>
 
-		</ul>
-	</div>
+			</ul>
+		</div>
 
-	
+		
+		<div id="content">
+			<!-------------------- Game-Over -------------------------------->
+			<div id="GameOver" hidden >
+			</br></br></br></br></br>
+				<center>
+					<table>
+						<tr>
+							<td>
+								<img  class="pictuerGameOver" src="images/game_over_yellow.jpg" style="width: 550px; height: 500px;" />
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align: center;">
+								<button sytle="margin:0 auto"  id="registerButton" onclick="show('setting')" >Start New Game!</button>
+							</td>
+						</tr>
+					</table>
+				<br/><br/><br/>	<br/>
+				</center>
+				</br></br></br></br></br></br></br></br></br></br>
+			</div>
+			
+			<!-------------------- Welcome -------------------------------->
+			<div id="welcomeDiv"  >
+				<center>
+				<img  class="pictuerWelcome" src="images/welcome.jpeg" style="margin-top: 2%; width: 45%; height: 100%; margin-left: 20%;" />
+				<button id="registerButton" onclick="show('register')" >Register</button>
+				<button id="LogInButton" onclick="show('login')" >LogIn</button>
+				</center>
+			</br></br></br></br></br></br></br></br></br></br>
+			</div>
+		</br></br></br>
+			<!-------------------- Register -------------------------------->
+			<div id="register" class="content-background" hidden>
+				<form class="register_container" name="register">
+					
+					<h1>Register</h1>
+					<hr>
 
-	<br/><br/><br/><br/><br/><br/>
+					<label for="firstname"><b>First Name</b></label>
+					<input type="text" placeholder="Please Enter Your First Name" name="firstname" id="firstname">
+					
 
-<div class="content">
-	
-	<div class="welcomeDiv" >
-		<center>
-		<img  class="pictuerWelcome" src="images/welcome.jpeg" style="width: 55%;height: 100%; ;" />
-		<button id="registerButton" on >Register</button>
-		<button id="LogInButton">LogIn</button>
-		</center>
-	</div>
+					<label for="lastname"><b>Last Name</b></label>
+					<input type="text" placeholder="Please Enter Your Last Name" name="lastname" id="lastname">
+					
+
+					<label for="username"><b>User Name</b></label>
+					<input type="text" placeholder="Please Choose a User-Name" name="username" id="username">
+					
+
+					<label for="email"><b>Email</b></label>
+					<input type="text" placeholder="Please Enter Your E-Mail" name="email" id="email">
+				
+
+					<label for="psw"><b>Password</b></label>
+					<input type="password" placeholder="Please Choose a Password" name="psw" id="psw">
+					
+
+					<label for="birthday"><b>Date of Birth:</b></label>
+					<SELECT id ="year" name = "year" onchange="change_year(this)">
+					</SELECT>
+					<SELECT  id ="month" name = "month" onchange="change_month(this)">
+					</SELECT>
+					<SELECT id ="day" name = "day" >
+					</SELECT>
+					
+					<hr>
+				
+					<button  type="submit"  class="registerbtn" >Register</button>
+				
+				</form>
+			</br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+			</div>
+			<!-------------------- Login -------------------------------->
+			<div id="login" class="content-background" hidden>
+				<form class="login_container" name="login">
+					
+					<h1>Login</h1>
+					<hr>
+
+					<label for="username"><b>User Name</b></label>
+					<input type="text" placeholder="Enter Your Username" name="username_login" id="username">
+					</br>
+
+					<label for="psw"><b>Password</b></label>
+					<input type="password" placeholder="Enter Your Password" name="psw_login" id="psw">
+					</br>
+
+					<hr>
+				
+					<button  type="submit"  class="registerbtn" >Login</button>
+				
+				</form>
+				</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+			</div>
+
+			<!-------------------- Setting -------------------------------->
+			<div id="setting" hidden >
+			
+				<div class="container" >
+					<form action="/action_page.php" >
+						<table class = "def_table" >
+							<th colspan="3" ><h1 style="font-size: 80px; padding: 0px;">Setting</h1></th>							
+							<tr>
+								<td class = "th-def">Number of balls</td>
+								<td class = "th-select"> 
+									<input id="amountBall" width="80%" type="range" min="50" max="90"  value="50" oninput="numBall.value = this.value" >
+									<output id="numBall">50 </output>
+									<output> balls</output>
+								</td>
+							</tr>					
+							<tr>
+								<td class = "th-def">
+									<label for="fname">5 points</label> 
+								</td>	
+							
+								<td class = "th-select" colspan="2">
+									<input type="color" id="colorBall5" value="#33cc33"  onchange="changeColor(this,'5')" >
+									<label for="head">color</label>	
+								</td>
+							</tr>			
+							<tr>
+								<td class = "th-def">
+									<label for="fname">15 points</label> 
+								</td>		
+								
+								<td class = "th-select" colspan="2">
+									<input type="color" id="colorBall15" value="#F70202"  onchange="changeColor(this,'15')">
+									<label for="head">color</label>	
+								</td>	
+							</tr>
+							<tr>
+								<td class = "th-def">
+									<label for="fname">25 points</label> 
+								</td>	
+										
+								<td class = "th-select" colspan="2">
+									<input type="color" id="colorBall25"  value="#0702F7"  onchange="changeColor(this,'25')">
+									<label for="head">color</label>	
+								</td>
+							</tr>					
+							<tr>
+								<td class = "th-def">Set time to game</td>
+								<td class = "th-select"> 
+									<input id="timeGame" width="80%" type="range" min="60" max="200" value="60" oninput="time.value = this.value"  >
+									<output id="time">60 </output>
+									<output> sec</output>
+								</td>
+							</tr>
+							<tr>
+								<td class = "th-def">Number of manster</td>
+								<td class = "th-select"> 
+									<input id="amountManster" width="80%" type="range" min="1" max="4"  value="1" oninput="numManster.value = this.value"  >
+									<output id="numManster">1 </output>
+									<output> manster</output>
+								</td>
+							</tr>
+						</table>
+
+						<table class="keyboard_select" style="padding: 0%;">
+							<tr>
+								<th colspan="3">
+									<p><h4 style = "font-family: cursive; letter-spacing: 1px;">Enter the keyboard you want to play with </h4></p>
+								</th>
+							</tr>
+							<tr>
+								<td></td>
+								<td><label for="fname">UP</label> </td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input id="keyUP" type="text"  onkeydown="KeyUpdate(event,'UP')"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><label for="fname">LEFT</label></td>
+								<td><label for="fname">DOWN</label></td>
+								<td><label for="fname">RIGHT</label></td>
+							</tr>
+							<tr>
+								<td><input id="keyLEFT" type="text" onkeydown="KeyUpdate(event,'LEFT')"></td>
+								<td><input id="keyDOWN" type="text"  onkeydown="KeyUpdate(event,'DOWN')"></td>
+								<td><input id="keyRIGHT" type="text"  onkeydown="KeyUpdate(event,'RIGHT')"></td>
+							</tr>
+						</table>
+					</form>
+					<table class="butt_tbl">
+						<th>
+							<button type="button"  onclick="randomSetting()" >Random</button>
+						</th>
+						<th>
+							<button type="button"  onclick="setSetting()" style="background-color: brown;" >Start Game!</button>
+						</th>
+					</table>
+				</div>
+
+			</div>
+			
+
+			<!-------------------- Game -------------------------------->
+			<div id="gameDiv" hidden >
+			</br></br></br>
+				<div>
+					<table class = "tbl_game">
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="player">Player:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="player_name" type="text" readonly="readonly"/>
+							</td>
+							<td  rowspan="14">
+								<div id="game" style="margin-left: 4px;">
+									<canvas style="background-color: silver;" id="canvas" height="630" width="630"></canvas>
+								</div>
+							</td>
+							<td rowspan="10"><button class ="start_new" type="button"  onclick="newGame()">New Game!</button></td>
+							<td rowspan="10"><input id="stopSound" type="image" onclick="stopSound()" src="images/soundOff.png" width="48" height="48"></td>
+							<td rowspan="10"><input hidden id="playSound" type="image" onclick="playSound()" src="images/soundOn.png" width="48" height="48"></td>
+						</tr>
+						<tr>
+							
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lbllife">Live:</label>
+							</td>
+							<div id = "live">
+								<td>
+									<img class = "live_img" id="life1" src="images/lifeOne.png" alt="logo" />
+									<img class = "live_img"  id="life2" src="images/lifeOne.png" alt="logo" />
+									<img class = "live_img"  id="life3" src="images/lifeOne.png" alt="logo" />
+									<img class = "live_img"  id="life4" src="images/lifeOne.png" alt="logo" />
+									<img class = "live_img"  id="life5" src="images/lifeOne.png" alt="logo" />
+									<img class = "live_img"  id="life6" src="images/lifeOne.png" alt="logo" hidden />
+									<img class = "live_img"  id="life7" src="images/lifeOne.png" alt="logo" hidden/>
+
+								</td>
+							</div>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<div id="score">
+									<label for="lblScore">SCORE:</label>
+								</div>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<div id="score">
+									<input id="lblScore" type="text" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<div id="time" >
+									<label for="lblTime">TIME:</label>
+								</div>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<div id="time" >
+									<input id="lblTime" type="text" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">Number Of Balls:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="ballNumber" value=1 type="text" readonly = "readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">5 points:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="set5pointColor" value="#33cc33" type="color" readonly = "readonly" />
+							</td>					
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">15 points:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="set15pointColor" value="#33cc33" type="color" readonly = "readonly" />
+							</td>					
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">25 points:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="set25pointColor" value="#33cc33" type="color" readonly = "readonly"/>
+							</td>					
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">Total Time:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="globalTime" value=1 type="text" readonly = "readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label i="numberManster">Number Of Mansters:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="setNumberManster" value=1 type="text" readonly = "readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">UP:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="setkeyUP" value="Arrow Up" type="text" readonly = "readonly" />
+							</td>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">Down:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="setkeyDown" value="Arrow Down" type="text" readonly = "readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">Right:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="setkeyRight" value="Arrow Right" type="text" readonly = "readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<td class = "set_in_game" colspan="1">
+								<label for="lblTime">Left:</label>
+							</td>
+							<td class = "set_in_game" colspan="1">
+								<input id="setkeyLeft" value="Arrow Left" type="text"readonly = "readonly" />
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div>	
+					<table >
+						<tr>
+							<td><button class ="start_new" type="button"  onclick="newGame()">New Game!</button></td>
+							<td><input id="stopSound" type="image" onclick="stopSound()" src="images/soundOff.png" width="48" height="48"></td>
+							<td><input hidden id="playSound" type="image" onclick="playSound()" src="images/soundOn.png" width="48" height="48"></td>
+						</tr>
 
 
+					</table>
+				</div>
+		
+			</div>
 
-<div id="game" hidden>
-	<div id="score">
-		<label for="lblScore">SCORE:</label>
-		<input id="lblScore" type="text" />
-	</div>
-	<div id="time" >
-		<label for="lblTime">TIME:</label>
-		<input id="lblTime" type="text" />
-	</div>
-	
-	
-	<div id="game">
-		<canvas id="canvas" height="600" width="600"></canvas>
-	</div>
-</div>
+			<!-------------------- About -------------------------------->
+			<div id = "about" hidden>
+				<!-- The Modal -->
+				</div>
+
+		</div>
+		<div id="myModal" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<span id = "btnClose" class="close">&times;</span>
+				<h2><p style="text-align: center; font-size: 30px;"><b><u>מגישים:</u>  אפרת כהן וליאל צרפתי</b></p></h2>
+			  </div>
+			  <div class="modal-body" style="direction: rtl; color: black;">
+				  <h4>קשיים</h4>
+				  <ol>
+					  <li>Coffee</li>
+					  <li>Tea</li>
+					  <li>Milk</li>
+				  </ol>
+				  <h4>שימוש ב-JQuery Plugin וב-Template</h4>
+				  <ol>
+					  <li>Coffee</li>
+					  <li>Tea</li>
+					  <li>Milk</li>
+				  </ol>
+			  </div>
+			  <div class="modal-footer">
+				  <h3 style="text-align: center; font-size: 26px; font-family: cursive;">See You Next Time ! ! !</h3>
+			  </div>
+			</div>
+		  
+		  </div>
+		  
+		  <script>
+		  var modal = document.getElementById("myModal");
+		  var btn = document.getElementById("myBtn");
+		  var span = document.getElementsByClassName("close")[0];
+		  btn.onclick = function() {
+			modal.style.display = "block";
+		  }
+		  window.onclick = function(event) {
+			if (event.target == modal) {
+			  modal.style.display = "none";
+			}
+		  }
+		  $(document).ready(function ()
+			 {
+				$("#btnClose").click(function ()
+				{
+				   $("#myModal").hide();
+				});
+				$(document).on('keyup',function(evt) {
+			if (evt.keyCode == 27) {
+			  $("#myModal").hide();
+			}   
+		  });
+			 });
+		  </script>
 
 
-</div>
-	
+		
+
 	</body>
+
+	<footer style="font-size: 14px;">
+		<p>This game was developed by <b>Efrat Cohen & Liel Serfaty </b> as part of a "Web Development Enviourmnets" course in Ben Gurion University</p>
+		<p><a href="mailto:lielserf@post.bgu.ac.il">Contact-Us!</a></p>
+	  </footer>
 </html>
