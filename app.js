@@ -113,13 +113,13 @@ $(window).on('beforeunload', function(){
 	window.clearInterval(interval_speacil3);
 	restartSetting();
 
-
 	$("#"+div_show).show();
   }
 
+ 
   function KeyUpdate(e,direct){
 
-	if(direct=='UP')
+	if(direct=="UP")
 	{
 		 key_upCode=e.keyCode;
 		 if(key_upCode==38)
@@ -128,7 +128,7 @@ $(window).on('beforeunload', function(){
 			 document.getElementById("keyUP").value=  getValKey(e);
 
 	}
-	if(direct=='DOWN'){
+	if(direct=="DOWN"){
 		 key_downCode=e.keyCode;
 		 if(key_downCode==40)
 		 	document.getElementById("keyDOWN").value= "ArrowDown";
@@ -158,20 +158,20 @@ $(window).on('beforeunload', function(){
   function getValKey(key)
   {
 	
-		 key_upCode=key.keyCode;
-		 if(key_upCode==38)
+		 let key_new=key.keyCode;
+		 if(key_new==38)
 			 return "ArrowUp";
 		
-		 if(key_upCode==40)
+		 if(key_new==40)
 		 	 return "ArrowDown";
 		
-		 if(key_upCode==37)
+		 if(key_new==37)
 			return "ArrowLeft";
 	
-		 if(key_upCode==39)
+		 if(key_new==39)
 			return "ArrowRight";
-		else
-			return String.fromCharCode(key.keyCode);
+		
+		return String.fromCharCode(key.keyCode);
 
 	} 
 
@@ -496,7 +496,7 @@ function Start() {
 	creat_image();
 	interval = setInterval(UpdatePosition, 150);
 	interval_chery = setInterval(updatePositionChery, 600);
-	interval_manster = setInterval(UpdatePositionManster, 500);//500
+	interval_manster = setInterval(UpdatePositionManster, 550);//500
 	interval_speacil1 = setInterval(updatePositionSpeacial1, 15000);
 	interval_speacil2 = setInterval(updatePositionSpeacial2, 20000);
 	interval_speacil3 = setInterval(updatePositionSpeacial3, 25000);
@@ -915,7 +915,7 @@ function UpdatePosition() {
 		if(playSoundBoll)
 			sound_looseLive.play();
 		updateLive();
-	
+		board[shape.i][shape.j]=0;	
 
 	}
 	else
@@ -977,9 +977,19 @@ function checkManster(){
 
 function UpdatePositionManster()
 {
-
-	algorithmManster();
 	
+	for(let x=1;x<manster_arr.length; x++)
+	{
+
+		if(shape.i==manster_arr[x].i && shape.j==manster_arr[x].j){
+		if(playSoundBoll)
+			sound_looseLive.play();
+		updateLive()	
+		board[shape.i][shape.j] = 0;
+		}
+	}
+	algorithmManster();
+
 
 }
 function algorithmManster()
@@ -1200,11 +1210,7 @@ function updateLive()
 
 	downLive();
 	numberLive--;
-	if(score-10 < 0)
-		score=0
-	
-	else
-		score=score-10;
+	score=score-10;
 
 	if(numberLive==0)
 	{
