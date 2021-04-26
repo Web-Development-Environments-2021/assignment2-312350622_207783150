@@ -66,6 +66,8 @@ var shape_manster_pink=new Object();
 var shapeClock=new Object();
 var manster_arr;
 var sound_play;
+var sound_gameOver;
+
 var sound_looseLive;
 var sound_winner;
 var sound_loose;
@@ -77,12 +79,21 @@ var eat_speacial3;
 var apperTimeSpeacial1 ;
 var apperTimeSpeacial2;
 var apperTimeSpeacial3;
-
+var numberBallEat;
+var playSoundBoll;
 $(window).on('beforeunload', function(){
 	$(window).scrollTop(0);
   });
+  
   function show(div_show)
   {
+	if(div_show=='login')
+	  {
+
+		let form = $("form[name='login']");
+		form[0].reset();
+		
+	  }
 	$("#"+"gameDiv").hide();
 	$("#"+"welcomeDiv").hide();
 	$("#"+"register").hide();
@@ -90,6 +101,19 @@ $(window).on('beforeunload', function(){
 	$("#"+"login").hide();
 	$("#"+"setting").hide();
 	$('#'+"GameOver").hide();
+
+	//stopSound();	
+	if(sound_play != undefined)
+		stopSound();
+	window.clearInterval(interval);
+	window.clearInterval(interval_manster);
+	window.clearInterval(interval_chery);
+	window.clearInterval(interval_speacil1);
+	window.clearInterval(interval_speacil2);
+	window.clearInterval(interval_speacil3);
+	restartSetting();
+
+
 	$("#"+div_show).show();
   }
 
@@ -100,21 +124,34 @@ $(window).on('beforeunload', function(){
 		 key_upCode=e.keyCode;
 		 if(key_upCode==38)
 			 document.getElementById("keyUP").value= "ArrowUp";
+		 else
+			 document.getElementById("keyUP").value= String.fromCharCode(e.keyCode);
+
 	}
 	if(direct=='DOWN'){
 		 key_downCode=e.keyCode;
 		 if(key_downCode==40)
 		 	document.getElementById("keyDOWN").value= "ArrowDown";
+		 else
+			 document.getElementById("keyDOWN").value=String.fromCharCode(e.keyCode);
+
 	}
 	if(direct=="LEFT"){
 		key_rightCode=e.keyCode;
 		 if(key_rightCode==37)
 			 document.getElementById("keyLEFT").value= "ArrowLeft";
+		else
+			document.getElementById("keyLEFT").value= String.fromCharCode(e.keyCode);;
+
+
 		}
 	if(direct=="RIGHT"){
 		key_leftCode=e.keyCode;
 		 if(key_leftCode==39)
 			 document.getElementById("keyRIGHT").value= "ArrowRight";
+		else
+			document.getElementById("keyRIGHT").value=String.fromCharCode(e.keyCode);
+
 	} 
   }
   
@@ -156,7 +193,7 @@ $(window).on('beforeunload', function(){
   function setRandomBall()
   {
 	 /*numberOfBall*/
-	 numberOfBall=Math.floor(Math.random() * 40) + 50; 
+	 numberOfBall=Math.floor(Math.random() * 41) + 50; 
 	 //update the element
 	 document.getElementById("amountBall").value=numberOfBall;
 	 document.getElementById("numBall").value = numberOfBall;
@@ -186,7 +223,7 @@ $(window).on('beforeunload', function(){
   
   function setRandomTimeGame()
   {
-	 timeGame=Math.floor(Math.random() *140)+60; 
+	 timeGame=Math.floor(Math.random()*141)+60; 
 	 document.getElementById("timeGame").value = timeGame;
 	 document.getElementById("time").value = timeGame; 
   }
@@ -233,6 +270,7 @@ $(window).on('beforeunload', function(){
 	sound_looseLive=new Audio('sound/loosLive.mp3');
 	sound_play=new Audio('sound/game_remex.mp3');
 	sound_winner=new Audio('sound/winner.mp3');
+	sound_gameOver=new Audio('sound/gameOver.mp3')
 	
 	restartLive()
 	
@@ -265,8 +303,8 @@ function updateSetting()
 }
 
 function Start() {
-
 	window.focus();
+	playSoundBoll=true;
 	playSound();
 	numberLive=5;
 	number_present=2;
@@ -281,10 +319,13 @@ function Start() {
 	manster_arr=new Array();
 	score = 0;
 	var cnt = 22*22;
-	food_remain =numberOfBall;
+	food_remain =numberOf5Ball+numberOf15Ball+numberOf25Ball;
 	food_remain_num5 =numberOf5Ball;
 	food_remain_num15 =numberOf15Ball;
 	food_remain_num25 =numberOf25Ball;
+	numberBallEat=food_remain;
+	
+    
 	var pacman_remain = 1;
 	start_time = new Date();
 	for (var i = 0; i < 22; i++) {
@@ -402,6 +443,7 @@ function Start() {
 				}
 				cnt--;
 			}
+			
 		}
 	}
 	while (food_remain > 0) {
@@ -429,11 +471,15 @@ function Start() {
 	);
 	creat_image();
 	interval = setInterval(UpdatePosition, 150);
-	interval_chery = setInterval(updatePositionChery, 400);
-	interval_manster = setInterval(UpdatePositionManster, 600);
-	interval_speacil1 = setInterval(updatePositionSpeacial1, 20000);
-	interval_speacil2 = setInterval(updatePositionSpeacial2, 15000);
+	interval_chery = setInterval(updatePositionChery, 600);
+	interval_manster = setInterval(UpdatePositionManster, 500);//500
+	interval_speacil1 = setInterval(updatePositionSpeacial1, 15000);
+	interval_speacil2 = setInterval(updatePositionSpeacial2, 20000);
 	interval_speacil3 = setInterval(updatePositionSpeacial3, 25000);
+	
+	
+	
+
 }
 
 function restartSpaicalShape(){
@@ -623,8 +669,8 @@ document.onkeydown = function(evt) {
         return false;
     }
 };
-
 function Draw(direct) {
+	numberBallEat=0;
 
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
@@ -659,6 +705,7 @@ function Draw(direct) {
 			} 
 					
 			else if (board[i][j] == 5) {
+				numberBallEat++;
 				context.beginPath();
 				context.arc(center.x , center.y , 11, 0, 2 * Math.PI); 
 				context.fillStyle = point5color; //color 5food
@@ -669,6 +716,7 @@ function Draw(direct) {
 				context.fillText("5", center.x  ,center.y+3 );
 			}
 			else if (board[i][j] == 15) {
+				numberBallEat++;
 				context.beginPath();
 				context.arc(center.x , center.y , 11, 0, 2 * Math.PI); 
 				context.fillStyle =point15color ; //color 15food
@@ -679,6 +727,7 @@ function Draw(direct) {
 				context.fillText("15", center.x , center.y+3);
 			}	
 			else if (board[i][j] == 25) {
+				numberBallEat++;
 				context.beginPath();
 				context.arc(center.x , center.y , 11, 0, 2 * Math.PI); 
 				context.fillStyle = point25color; //color 25food
@@ -693,24 +742,37 @@ function Draw(direct) {
 			}
 			let currentTime1 = new Date();
 			let time_elapsed_spicial1 = (currentTime1 - apperTimeSpeacial1)/1000 ;
-			 if(board[i][j]==10 &&time_elapsed_spicial1<10)
-				 context.drawImage(img_hamborger,  center.x-width_rec/2, center.y-hight_rec/2,width_rec,hight_rec);
-
+			 if(board[i][j]==10 )
+			 {
+				 if(time_elapsed_spicial1<10)
+				 	context.drawImage(img_hamborger,  center.x-width_rec/2, center.y-hight_rec/2,width_rec,hight_rec);
+				 else{board[i][j]=0}	
+			 }		
 			let time_elapsed_spicial2 = (currentTime1 - apperTimeSpeacial2)/1000 ;
-			if(  time_elapsed_spicial2<7 && board[i][j]==11)
-				{ context.drawImage(img_chips,  center.x-width_rec/2, center.y-hight_rec/2,width_rec,hight_rec);
+			if( board[i][j]==11)
+				{ 
+					if(time_elapsed_spicial2<8)
+						context.drawImage(img_chips,  center.x-width_rec/2, center.y-hight_rec/2,width_rec,hight_rec);
+					else
+						board[i][j]=0;
 			
 				}
 		
+
+		
 			var time_elapsed_spicial3 = (currentTime1 - apperTimeSpeacial3)/1000 ;
-			if(time_elapsed_spicial3<7&& board[i][j]==12)
+			if(board[i][j]==12)
 			{
-				context.drawImage(img_drink,  center.x-width_rec/2, center.y-hight_rec/2,width_rec,hight_rec);
+				if(time_elapsed_spicial3<6)
+					context.drawImage(img_drink,  center.x-width_rec/2, center.y-hight_rec/2,width_rec,hight_rec);
+				else
+					board[i][j]=0;
 		
 			}
-				}
+	
 
 	}
+}
 	//speacial clock
 	if( (time_elapsed)>3 && time_elapsed<20 && !eat_clock)
 			{
@@ -754,14 +816,17 @@ function UpdatePosition() {
 
 	if (board[shape.i][shape.j] == 5) {
 		score=score+5;
+		//numberBallEat=numberBallEat-1;
 	}	
 
-	if (board[shape.i][shape.j] == 15) {
+	else if (board[shape.i][shape.j] == 15) {
 		score=score+15;
+		//numberBallEat=numberBallEat-1;
 	}
 
-	if (board[shape.i][shape.j] == 25) {
+	else if (board[shape.i][shape.j] == 25) {
 		score=score+25;
+		//numberBallEat=numberBallEat-1;
 	}
 
 	if(shapeChery.i==shape.i && shapeChery.j==shape.j)
@@ -784,6 +849,8 @@ function UpdatePosition() {
 	//add 100 points hamorger
 	if (board[shape.i][shape.j] == 10) {
 	
+		board[shape.i][shape.j] == 0;
+
 		score=score+100;
 		//eat_speacial1=true;
 
@@ -791,6 +858,7 @@ function UpdatePosition() {
 	//add life
 	if(board[shape.i][shape.j] == 11 && number_present>0)
 	{
+		board[shape.i][shape.j] == 0;
 		$("#"+'life'+(numberLive+1)).show();
 		numberLive++;
         number_present--;
@@ -805,7 +873,11 @@ function UpdatePosition() {
 	if(board[shape.i][shape.j] == 12 )
 	{
 	let food=3;
+	board[shape.i][shape.j] == 0;
+	//numberBallEat=numberBallEat+3;
+	//alert(numberBallEat)
 	while (food > 0) {
+		
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] =15;
 		food--;
@@ -816,11 +888,14 @@ function UpdatePosition() {
 
 	if(checkManster())
 	{
+		if(playSoundBoll)
+			sound_looseLive.play();
 		updateLive();
-
+	
 
 	}
-	else{
+	else
+	{
 
 		board[shape.i][shape.j] = 2;
 	}
@@ -830,15 +905,24 @@ function UpdatePosition() {
 	if ( time_elapsed >=timeGame) {
 		if(score<100 && numberLive>0)
 		{
-		  alert("You are better than "+score+" points!")
+		  alert("You are better than "+score+" points!");
 		}
 		else if(numberLive>0 && score>=100){
 	      stopSound(); 
 		  sound_winner.play();
-		  alert("Winner!!!")
+		  alert("Winner!!!");
 		}
-		 
-	gameOver();
+	 
+		gameOver();
+	}
+	if(numberBallEat==0)
+	{
+		    
+			stopSound(); 
+			sound_winner.play();
+			alert("Winner!!!");		
+			gameOver();
+
 	}
 
 	else {
@@ -846,7 +930,9 @@ function UpdatePosition() {
 		DrawManster();
 		if(!eat_chery)
 			DrawChery();
+	   
 	}
+	
 }
 
 
@@ -883,18 +969,16 @@ function algorithmManster()
 		var adjacent=shape.i-manster_arr[x].i;
 		
 		var angle_radians= Math.atan2(opposite,adjacent);
-		//alert(angle_)
-		//if (shape_manster_blue.i>shape.i)
-		//	angle=angle+180;
-		//Use this angle to calculate the velocity vector of the Ghost
-		//Once again using SOH-CAH-TOA trignometic rations
+		
 	
 
 		let vx = Math.round( Math.cos(angle_radians));
 		let vy= Math.round( Math.sin(angle_radians));
+		
 		if(vx==0 && vy==1  && validMove(manster_arr[x].i,manster_arr[x].j+1))
 		{	manster_arr[x].i=manster_arr[x].i;
-			manster_arr[x].j=manster_arr[x].j+1;}
+			manster_arr[x].j=manster_arr[x].j+1;
+		}
 		
 
 		else if(vx==-1 && vy==-1){
@@ -902,6 +986,10 @@ function algorithmManster()
 				manster_arr[x].i=manster_arr[x].i-1;
 			else if(validMove(manster_arr[x].i,manster_arr[x].j-1))
 				manster_arr[x].j=manster_arr[x].j-1;
+			
+			else
+				findRandomCellManster(manster_arr[x]);
+
 				}
 
 		
@@ -1146,12 +1234,14 @@ function downLive()
 
 }
 
-
 function restartLive()
 {
 
   for(var i=1;i<6;i++)
 	$("#"+'life'+i).show();
+$("#"+'life6').hide();
+$("#"+'life7').hide();
+
 
 
 }
@@ -1160,6 +1250,7 @@ function restartLive()
 function gameOver()
 {
 	stopSound();
+	sound_gameOver.play();
 	window.clearInterval(interval);
 	window.clearInterval(interval_manster);
 	window.clearInterval(interval_chery);
@@ -1167,6 +1258,7 @@ function gameOver()
 	window.clearInterval(interval_speacil2);
 	window.clearInterval(interval_speacil3);
 	restartSetting();
+	restartLive();
 	show("GameOver");
 }
 
@@ -1181,12 +1273,13 @@ function newGame()
 	window.clearInterval(interval_speacil2);
 	window.clearInterval(interval_speacil3);
 	restartSetting();
+	restartLive();
 	show('setting');
 	
 }
 function stopSound(){
 	sound_play.pause();
-
+	playSoundBoll=false;
 	$("#stopSound").hide();
 	$("#playSound").show();
 
@@ -1194,6 +1287,7 @@ function stopSound(){
 }
 function playSound(){
 	sound_play.play();
+	playSoundBoll=true;
 
 	$("#playSound").hide();
 	$("#stopSound").show();

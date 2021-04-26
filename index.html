@@ -177,8 +177,10 @@
 							</tr>					
 							<tr>
 								<td class = "th-def">Set time to game</td>
-								<td class = "th-select"> 
-									<input id="timeGame" width="80%" type="range" min="60" max="200" value="60" oninput="time.value = this.value"  >
+								<td class = "th-select">
+									<input id="timeGame" type="number" min="60" max="500000000" step="1" value="60" oninput="time.value = this.value"> 
+								</td>
+								<td>
 									<output id="time">60 </output>
 									<output> sec</output>
 								</td>
@@ -206,7 +208,7 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><input id="keyUP" type="text"  onkeydown="KeyUpdate(event,'UP')"></td>
+								<td><input type="button" id="keyUP"   onkeydown="KeyUpdate(event,'UP')"></td>
 								<td></td>
 							</tr>
 							<tr>
@@ -215,9 +217,9 @@
 								<td><label for="fname">RIGHT</label></td>
 							</tr>
 							<tr>
-								<td><input id="keyLEFT" type="text" onkeydown="KeyUpdate(event,'LEFT')"></td>
-								<td><input id="keyDOWN" type="text"  onkeydown="KeyUpdate(event,'DOWN')"></td>
-								<td><input id="keyRIGHT" type="text"  onkeydown="KeyUpdate(event,'RIGHT')"></td>
+								<td><input  type="button" id="keyLEFT"  onkeydown="KeyUpdate(event,'LEFT')"></td>
+								<td><input type="button"  id="keyDOWN" onkeydown="KeyUpdate(event,'DOWN')"></td>
+								<td><input type="button" id="keyRIGHT"  onkeydown="KeyUpdate(event,'RIGHT')"></td>
 							</tr>
 						</table>
 					</form>
@@ -252,8 +254,8 @@
 								</div>
 							</td>
 							<td rowspan="10"><button class ="start_new" type="button"  onclick="newGame()">New Game!</button></td>
-							<td rowspan="10"><input id="stopSound" type="image" onclick="stopSound()" src="images/soundOff.png" width="48" height="48"></td>
-							<td rowspan="10"><input hidden id="playSound" type="image" onclick="playSound()" src="images/soundOn.png" width="48" height="48"></td>
+							<td rowspan="10"><input id="stopSound" type="image" onclick="stopSound()" src="images/soundOn.png" width="48" height="48"></td>
+							<td rowspan="10"><input hidden id="playSound" type="image" onclick="playSound()" src="images/soundOff.png" width="48" height="48"></td>
 						</tr>
 						<tr>
 							
@@ -381,18 +383,6 @@
 						</tr>
 					</table>
 				</div>
-				<div>	
-					<table >
-						<tr>
-							<td><button class ="start_new" type="button"  onclick="newGame()">New Game!</button></td>
-							<td><input id="stopSound" type="image" onclick="stopSound()" src="images/soundOff.png" width="48" height="48"></td>
-							<td><input hidden id="playSound" type="image" onclick="playSound()" src="images/soundOn.png" width="48" height="48"></td>
-						</tr>
-
-
-					</table>
-				</div>
-		
 			</div>
 
 			<!-------------------- About -------------------------------->

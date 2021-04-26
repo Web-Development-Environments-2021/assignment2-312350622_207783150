@@ -250,5 +250,11 @@ $("#"+"about").hide();
 $("#"+"login").hide();
 $("#"+"setting").hide();
 $("#"+"GameOver").hide();
-$("#"+'login').show();
+
+let form = $("form[name='login']");
+form[0].reset();
+
+
+$("#"+'welcomeDiv').show();
 }
+
