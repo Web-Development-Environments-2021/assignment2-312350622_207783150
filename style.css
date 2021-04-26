@@ -184,7 +184,6 @@ ul{
 .start_new:hover {
 	background-color:#8958e6;
 }
-}
 
 
 /*-----------------Register --------------------------*/
@@ -349,6 +348,23 @@ select {
 	height: 30px;
 	width: 120px;
 }
+
+.container input[type=button] {
+	padding: 14px;
+	border: 2px solid rgb(113, 114, 114);
+	border-radius: 4px;
+	resize:horizontal;
+	height: 15px;
+	width: 120px;
+}
+
+.container input[type=button]:hover{
+	border: 2px solid rgb(54, 54, 54);
+}
+.container input[type=button]:focus{
+	border: 2px solid rgb(54, 54, 54);
+}
+
   
 .keyboard_select{
 	width: 50px;

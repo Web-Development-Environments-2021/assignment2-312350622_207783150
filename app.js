@@ -125,7 +125,7 @@ $(window).on('beforeunload', function(){
 		 if(key_upCode==38)
 			 document.getElementById("keyUP").value= "ArrowUp";
 		 else
-			 document.getElementById("keyUP").value= String.fromCharCode(e.keyCode);
+			 document.getElementById("keyUP").value=  getValKey(e);
 
 	}
 	if(direct=='DOWN'){
@@ -133,7 +133,7 @@ $(window).on('beforeunload', function(){
 		 if(key_downCode==40)
 		 	document.getElementById("keyDOWN").value= "ArrowDown";
 		 else
-			 document.getElementById("keyDOWN").value=String.fromCharCode(e.keyCode);
+			 document.getElementById("keyDOWN").value= getValKey(e);
 
 	}
 	if(direct=="LEFT"){
@@ -141,7 +141,7 @@ $(window).on('beforeunload', function(){
 		 if(key_rightCode==37)
 			 document.getElementById("keyLEFT").value= "ArrowLeft";
 		else
-			document.getElementById("keyLEFT").value= String.fromCharCode(e.keyCode);;
+			document.getElementById("keyLEFT").value=  getValKey(e);
 
 
 		}
@@ -150,11 +150,35 @@ $(window).on('beforeunload', function(){
 		 if(key_leftCode==39)
 			 document.getElementById("keyRIGHT").value= "ArrowRight";
 		else
-			document.getElementById("keyRIGHT").value=String.fromCharCode(e.keyCode);
+			document.getElementById("keyRIGHT").value= getValKey(e);
 
 	} 
   }
   
+  function getValKey(key)
+  {
+	
+		 key_upCode=key.keyCode;
+		 if(key_upCode==38)
+			 return "ArrowUp";
+		
+		 if(key_upCode==40)
+		 	 return "ArrowDown";
+		
+		 if(key_upCode==37)
+			return "ArrowLeft";
+	
+		 if(key_upCode==39)
+			return "ArrowRight";
+		else
+			return String.fromCharCode(key.keyCode);
+
+	} 
+
+
+  
+
+
   function changeColor(event,number){
 	 if(number=='5'){
 	   	document.getElementById("colorBall5").value=event.value;
