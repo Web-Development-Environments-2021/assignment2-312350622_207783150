@@ -929,6 +929,8 @@ function UpdatePosition() {
 	if ( time_elapsed >=timeGame) {
 		if(score<100 && numberLive>0)
 		{
+		  stopSound(); 
+		  sound_gameOver.play();
 		  alert("You are better than "+score+" points!");
 		}
 		else if(numberLive>0 && score>=100){
@@ -1213,8 +1215,10 @@ function updateLive()
 	score=score-10;
 
 	if(numberLive==0)
-	{
+	{   
 		alert("Looser");
+		stopSound();
+		sound_gameOver.play();
 		gameOver();
 	}
 	else{
@@ -1279,8 +1283,7 @@ $("#"+'life7').hide();
 
 function gameOver()
 {
-	stopSound();
-	sound_gameOver.play();
+	
 	window.clearInterval(interval);
 	window.clearInterval(interval_manster);
 	window.clearInterval(interval_chery);
